@@ -1,0 +1,16 @@
+#!/usr/bin/env ruby
+
+$LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
+
+require 'myline_command'
+
+argv = ARGV[0]
+case argv
+when '-u'
+  MylineCommand.start_unbrella_advice
+when '-d'
+  MylineCommand.start_dust_callender
+when '-v'
+  puts Myline::VERSION
+else
+end

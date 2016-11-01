@@ -28,7 +28,16 @@ module MylineCommand
       puts "OK"
     end
 
-    def start_dust_callender
+    def start_dust_calender
+      dc = MylineCommand::DustCalender.new
+      schedule = dc.check_schedule
+      if (Time.now.strftime('%H').to_i <= 9)
+        post_text = schedule[0].join("\n")
+      else
+        post_text = schedule[1].join("\n")
+      end
+      @client.push_message(ENV["LINE_USERID"], {type: 'text', text: post_text})
+      puts "OK"
     end
   end
 end

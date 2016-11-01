@@ -10,7 +10,8 @@ when '-u'
   command = MylineCommand::Command.new
   command.start_unbrella_advice
 when '-d'
-  MylineCommand.start_dust_callender
+  command = MylineCommand::Command.new
+  command.start_dust_calender
 when '-v'
   puts Myline::VERSION
 else

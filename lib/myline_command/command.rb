@@ -20,9 +20,9 @@ module MylineCommand
       ua = MylineCommand::UnbrellaAdviser.new
       message = ua.get_umbrella_data
       if (Time.now.strftime('%H').to_i <= 10)
-        post_text = "今日の傘指数は#{message[:today_rainypercent]}です。\n#{message[:today_umbrella_advice]}"
+        post_text = "今日の傘指数は#{message[:today_rainypercent]}だよ。\n#{message[:today_umbrella_advice]}"
       else
-        post_text = "明日の傘指数は#{message[:tomorrow_rainypercent]}です。\n#{message[:tomorrow_umbrella_advice]}"
+        post_text = "明日の傘指数は#{message[:tomorrow_rainypercent]}なのだ。\n#{message[:tomorrow_umbrella_advice]}"
       end
       @client.push_message(ENV["LINE_USERID"], {type: 'text', text: post_text})
       puts "OK"

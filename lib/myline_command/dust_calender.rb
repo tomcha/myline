@@ -15,12 +15,12 @@ module MylineCommand
     def check_schedule
       today_schedule = schedule(@today)
       for i in (0..today_schedule.size) do
-        today_schedule[i] = '今日は' + today_schedule[i] if today_schedule[i] != nil
+        today_schedule[i] = '今日は' + today_schedule[i] + 'だよ' if today_schedule[i] != nil
       end
 
       tomorrow_schedule = schedule(@tomorrow)
       for i in (0..tomorrow_schedule.size) do
-        tomorrow_schedule[i] = '明日は' + tomorrow_schedule[i] if tomorrow_schedule[i] != nil
+        tomorrow_schedule[i] = '明日は' + tomorrow_schedule[i] + 'だよ' if tomorrow_schedule[i] != nil
       end
 
       return [today_schedule, tomorrow_schedule]
@@ -57,58 +57,3 @@ __END__
 かん・びん　1,3水
 ペット、不燃、危険、大型　2,4水
 廃品改修　1,3木
-
-    def initialize(*weeknumber)
-      if (weeknumber.size > 0)
-#      #テスト用イニシャライザ
-        judes_day_weeknumber = weeknumber[0]
-        judes_morrow_weeknumber = weeknumber[0]
-        judes_day_weekday = weeknumber[1]
-      else
-        judes_day_weeknumber = ((Time.now.day) / 7) + 1
-        judes_morrow_weeknumber = (((Time.now) + 60 * 60 * 24).day) / 7) + 1
-        judes_day_weekday = Time.now.wday
-      end
-    end
-
-    def tomorrow_schedule
-      tomorrow_schedule = Array.new
-      case judes_day_weekday
-      when 0
-        tomorrow_schedule << '明日は燃えるゴミの日'
-      when 2
-        if (judes_day_weeknumber == 1 || @today_weeknumber == 3)
-          tomorrow_schedule << '明日はかん・びんの日'
-        elsif (judes_morrow_weeknumber == 2 || @tomorrow_weeknumber == 4)
-          tomorrow_schedule << '明日は不燃、危険、大型ゴミの日'
-        end
-      when 3
-        tomorrow_schedule << '明日は燃えるゴミの日'
-        if (judes_morrow_weeknumber == 1 || @tomorrow_weeknumber == 3)
-          tomorrow_schedule << '明日は古着・ダンボールの日'
-        end
-      end
-      return tomorrow_schedule
-    end
-
-    def today_schedule
-      today_schedule = Array.new
-      case judes_day_weekday
-      when 1
-        today_schedule << '今日は燃えるゴミの日'
-      when 3
-        if (judes_day_weeknumber == 1 || @today_weeknumber == 3)
-          today_schedule << '今日はかん・びんの日'
-        elsif (judes_day_weeknumber == 2 || @today_weeknumber == 4)
-          today_schedule << '今日は不燃、危険、大型ゴミの日'
-        end
-      when 4
-        today_schedule << '今日は燃えるゴミの日'
-        if (judes_day_weeknumber == 1 || @today_weeknumber == 3)
-          today_schedule << '今日は古着・ダンボールの日'
-        end
-      end
-      return today_schedule
-    end
-  end
-end

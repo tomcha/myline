@@ -19,9 +19,12 @@ module MylineCommand
     def start_unbrella_advice
       ua = MylineCommand::UnbrellaAdviser.new
       message = ua.get_umbrella_data
-      message = {type: 'text', text: 'hello'}
-      response = @client.push_message(ENV["LINE_USERID"], message)
-      p response
+      if (Time.now.strftime('%H').to_i <= 10)
+        post_text = "今日の傘指数は#{message[:today_rainypercent]}です。\n#{message[:today_umbrella_advice]}"
+      else
+        post_text = "明日の傘指数は#{message[:tomorrow_rainypercent]}です。\n#{message[:tomorrow_umbrella_advice]}"
+      end
+      @client.push_message(ENV["LINE_USERID"], {type: 'text', text: post_text})
       puts "OK"
     end
 

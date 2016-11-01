@@ -19,8 +19,10 @@ module MylineCommand
     def start_unbrella_advice
       ua = MylineCommand::UnbrellaAdviser.new
       message = ua.get_umbrella_data
-      @client.push_message(ENV["LINE_USERID"], message)
-      "OK"
+      message = {type: 'text', text: 'hello'}
+      response = @client.push_message(ENV["LINE_USERID"], message)
+      p response
+      puts "OK"
     end
 
     def start_dust_callender

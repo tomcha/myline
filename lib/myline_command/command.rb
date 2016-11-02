@@ -6,7 +6,8 @@ module MylineCommand
   class Command
 
     def initialize
-      config_txt = YAML.load_file("config.yml")
+      path = File.expand_path('../../../config.yml', __FILE__)
+      config_txt = YAML.load_file(path)
       ENV["LINE_CHANNEL_SECRET"] = config_txt["line"]["line_channel_secret"]
       ENV["LINE_CHANNEL_TOKEN"] = config_txt["line"]["line_channel_token"]
       ENV["LINE_USERID"] = config_txt["line"]["line_uid"]

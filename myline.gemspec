@@ -28,6 +28,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency "line-bot-api"
+  spec.add_dependency "passenger", '~> 5.0', '>= 5.0.28'
   spec.add_dependency "sinatra", "~> 1.4"
 
   spec.add_development_dependency "bundler", "~> 1.12"

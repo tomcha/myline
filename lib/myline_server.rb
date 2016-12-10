@@ -1,5 +1,6 @@
 require 'myline'
 require 'myline_server/server'
+require 'myline_server/message_data'
 require 'sinatra/base'
 
 # Your code goes here...
@@ -19,9 +20,10 @@ module MylineServer
         return 'no data'
       end
       json_data = JSON.parse data
+      puts get_uid(json_data)
       path = File.expand_path('../../log/', __FILE__)
       File.open(File.join(path,'params.log'), "a") do |f|
-        f.puts "\n#{DateTime.now.strftime('%Y-%m-%d %H:%M:%S')} #{data}"
+        f.puts "\n#{DateTime.now.strftime('%Y-%m-%d %H:%M:%S')}\n"
         f.puts json_data.to_s
       end
       'params logged.'

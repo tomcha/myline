@@ -10,7 +10,8 @@ module MylineCommand
       config_txt = YAML.load_file(path)
       ENV["LINE_CHANNEL_SECRET"] = config_txt["line"]["line_channel_secret"]
       ENV["LINE_CHANNEL_TOKEN"] = config_txt["line"]["line_channel_token"]
-      ENV["LINE_USERID"] = config_txt["line"]["line_uid"]
+#      ENV["LINE_USERID"] = config_txt["line"]["line_uid"]
+      @userids = config_txt["line"]["line_uid"]
       @client ||= Line::Bot::Client.new { |config|
         config.channel_secret = ENV["LINE_CHANNEL_SECRET"]
         config.channel_token = ENV["LINE_CHANNEL_TOKEN"]
@@ -25,7 +26,10 @@ module MylineCommand
       else
         post_text = "明日の傘指数は#{message[:tomorrow_rainypercent]}なのだ。\n#{message[:tomorrow_umbrella_advice]}"
       end
-      @client.push_message(ENV["LINE_USERID"], {type: 'text', text: post_text})
+      uid_keys = @userids.keys
+      for uid_key in uid_keys do
+        @client.push_message(@userids[uid_key], {type: 'text', text: post_text})
+      end
       puts "OK"
     end
 
@@ -37,8 +41,11 @@ module MylineCommand
       else
         post_text = schedule[1].join("\n")
       end
-      @client.push_message(ENV["LINE_USERID"], {type: 'text', text: post_text})
-      puts "OK"
+      uid_keys = @userids.keys
+      for uid_key in uid_keys do
+        @client.push_message(@userids[uid_key], {type: 'text', text: post_text})
+        puts "OK"
+      end
     end
   end
 end

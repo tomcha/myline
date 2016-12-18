@@ -1,6 +1,7 @@
 require 'myline'
 require 'myline_server/server'
 require 'myline_server/message_data'
+require 'myline_command/command'
 require 'sinatra/base'
 
 # Your code goes here...
@@ -20,13 +21,18 @@ module MylineServer
         return 'no data'
       end
       json_data = JSON.parse data
-      puts get_uid(json_data)
-      path = File.expand_path('../../log/', __FILE__)
-      File.open(File.join(path,'params.log'), "a") do |f|
-        f.puts "\n#{DateTime.now.strftime('%Y-%m-%d %H:%M:%S')}\n"
-        f.puts json_data.to_s
+      message_text = get_message_text(json_data)
+      if(message_text =~ /酒/ || message_text =~ /飲み過/)
+        client = MylineCommand::Command.new
+        client.send_reply_message(get_replytoken(json_data), "今日は何杯飲んだの？\n飲み過ぎはダメですよ！") 
       end
-      'params logged.'
+      #puts get_uid(json_data)
+      #path = File.expand_path('../../log/', __FILE__)
+      #File.open(File.join(path,'params.log'), "a") do |f|
+      #  f.puts "\n#{DateTime.now.strftime('%Y-%m-%d %H:%M:%S')}\n"
+      #  f.puts json_data.to_s
+      #end
+      #'params logged.'
     end
   end
 end

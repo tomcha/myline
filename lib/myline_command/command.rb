@@ -47,5 +47,10 @@ module MylineCommand
         puts "OK"
       end
     end
+
+    def send_reply_message(replytoken, message_text)
+      @client.reply_message(replytoken, message_text)
+      puts 'OK'
+    end
   end
 end

@@ -4,6 +4,7 @@ require 'myline_server/message_data'
 require 'myline_command/command'
 require 'sinatra/base'
 
+#include MylineServer::MessageData
 # Your code goes here...
 module MylineServer
   class ResponseServer < Sinatra::Base
@@ -21,10 +22,10 @@ module MylineServer
         return 'no data'
       end
       json_data = JSON.parse data
-      message_text = get_message_text(json_data)
-      if(message_text =~ /酒/ || message_text =~ /飲み過/)
+      message_text = MessageData.get_message_text(json_data)
+      if(message_text =~ /(酒|ハイボール|ワイン|飲過|飲み過)/)
         client = MylineCommand::Command.new
-        client.send_reply_message(get_replytoken(json_data), "今日は何杯飲んだの？\n飲み過ぎはダメですよ！") 
+        client.send_reply_message(MessageData.get_replytoken(json_data), "今日は何杯飲んだの？\n飲み過ぎはダメですよ！") 
       end
       #puts get_uid(json_data)
       #path = File.expand_path('../../log/', __FILE__)

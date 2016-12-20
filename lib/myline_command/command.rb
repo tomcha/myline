@@ -30,7 +30,6 @@ module MylineCommand
       for uid_key in uid_keys do
         @client.push_message(@userids[uid_key], {type: 'text', text: post_text})
       end
-      puts "OK"
     end
 
     def start_dust_calender
@@ -44,13 +43,11 @@ module MylineCommand
       uid_keys = @userids.keys
       for uid_key in uid_keys do
         @client.push_message(@userids[uid_key], {type: 'text', text: post_text})
-        puts "OK"
       end
     end
 
     def send_reply_message(replytoken, message_text)
       @client.reply_message(replytoken, message_text)
-      puts 'OK'
     end
   end
 end

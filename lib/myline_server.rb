@@ -25,7 +25,7 @@ module MylineServer
       message_text = MessageData.get_message_text(json_data)
       if(message_text =~ /(酒|ハイボール|ワイン|飲過|飲み過)/)
         client = MylineCommand::Command.new
-        client.send_reply_message(MessageData.get_replytoken(json_data), ["今日は何杯飲んだの？\n飲み過ぎはダメですよ！"]) 
+        client.send_reply_message(MessageData.get_replytoken(json_data), {type: 'text', text: "今日は何杯飲んだの？\n飲み過ぎはダメですよ！"}) 
       end
       #puts get_uid(json_data)
       #path = File.expand_path('../../log/', __FILE__)

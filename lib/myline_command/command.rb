@@ -47,7 +47,7 @@ module MylineCommand
     end
 
     def send_reply_message(replytoken, message_text)
-      @client.reply_message(replytoken, message_text)
+      @client.reply_message(replytoken, {type: 'text', text: message_text})
     end
   end
 end

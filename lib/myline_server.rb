@@ -17,6 +17,7 @@ module MylineServer
         adapter: 'sqlite3',
         database: db_path
       )
+      p db_path
     end
 
     get '/' do

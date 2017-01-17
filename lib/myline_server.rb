@@ -20,15 +20,13 @@ module MylineServer
     end
 
     get '/' do
-      Task.create!(userid: 'aaa', task_text: 'タスク', remind_datetime: '2016-12-27', deleted_flag: 0)
-      @tasks = Task.all
-      "#{@tasks}"
-      'test done'
+      'root'
     end
 
     get '/linebot/callback' do
       'callback'
     end
+
     post '/linebot/callback' do
       request.body.rewind  # 既に読まれているときのため
       data = request.body.read
@@ -39,6 +37,7 @@ module MylineServer
       message_text = MessageData.get_message_text(json_data)
       userid = MessageData.get_uid(json_data)
       reply_message = ''
+      message_text.gsub!(/　/, \s)
 
       if(message_text =~ /foo/)
         reply_message = 'bar'
@@ -58,7 +57,6 @@ module MylineServer
       elsif(message_text =~ /^set:/)
         message_text =~ %r(^set:(\d+-\d+-\d+)\s(\d+:\d+)?\s(.+)$)
         date = $1
-        p $2
         if $2 == nil
           time = '0:00' 
         else
@@ -69,18 +67,22 @@ module MylineServer
         reply_message = "タスクを#{date} #{time}に通知する様セットしました。"
 
       elsif(message_text =~ /^list:/)
-        lists = Task.where(userid: userid, deleted_flag: 0)
-        lists.order("remind_datetime id")
-        lists_array = lists.pluck(:remind_datetime, :task_text)
-        lists_array.each do |datetime, text|
-          reply_message += "#{datetime}\n #{text}\n\n"
+        reply_message = ''
+        list = Task.where(userid: userid, deleted_flag: 0).order('remind_datetime ,id')
+        i = 1
+        list.each do |record|
+          record.update(task_num: i)
+          reply_Message += "#{record.task_num} #{record.remind_datetime} #{redord.task_text}\n"
+          i += 1
         end
+        reply_message.chomp!
 
       elsif(message_text =~ /^del:/)
         message_text =~ %r(^del:\d+)
         db_id = $1
         repyly_message = "タスクを削除しました。"
       end
+      puts reply_message
         client = MylineCommand::Command.new
         client.send_reply_message(MessageData.get_replytoken(json_data),reply_message) 
     end

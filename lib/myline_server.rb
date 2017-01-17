@@ -37,7 +37,7 @@ module MylineServer
       message_text = MessageData.get_message_text(json_data)
       userid = MessageData.get_uid(json_data)
       reply_message = ''
-      message_text.gsub!(/　/, \s)
+      message_text.gsub!(/　/, ' ')
 
       if(message_text =~ /foo/)
         reply_message = 'bar'

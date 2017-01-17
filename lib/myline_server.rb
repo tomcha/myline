@@ -44,13 +44,15 @@ module MylineServer
 
       elsif(message_text =~ /^help:/)
         reply_message = <<~EOS
-            set:\n
-            書式　set:2017-1-1 13:05\n
-            西暦年-月-日 24時:分 登録するタスクを書く\n\n
-            list:\n
-            登録されているタスクの一覧を表示する\n\n
-            del:\n
-            書式　del:3\n
+            set:
+            書式
+            set:2017-1-1 13:05
+            西暦年-月-日 24時:分 登録するタスクを書く\n
+            list:
+            登録されているタスクの一覧を表示する\n
+            del:
+            書式
+            del:3
             listで確認したタスク番号を書いてタスクを個別に削除する
         EOS
 

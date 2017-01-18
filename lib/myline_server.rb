@@ -21,7 +21,7 @@ module MylineServer
     end
 
     get '/' do
-      'root'
+        Task.create!(userid: 'aaa', task_text: 'text', remind_datetime: '2017-1-18 12:00', deleted_flag: 0)
     end
 
     get '/linebot/callback' do
@@ -66,6 +66,7 @@ module MylineServer
           time = $2
         end
         task_text = $3
+        p ENV['USER']
         Task.create!(userid: userid, task_text: task_text, remind_datetime: "#{date} #{time}",deleted_flag: 0)
         reply_message = "タスクを#{date} #{time}に通知する様セットしました。"
 

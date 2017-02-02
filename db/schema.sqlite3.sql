@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS tasks (
   userid text NOT NULL,
   task_text text NOT NULL,
   remind_datetime text NOT NULL,
-  task_num INTEGER ,
+  task_num INTEGER, 
   deleted_flag INTEGER NOT NULL,
   created_at text NOT NULL
 );

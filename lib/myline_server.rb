@@ -67,6 +67,7 @@ module MylineServer
         end
         task_text = $3
         p ENV['USER']
+        p "userid: #{userid}, task_text: #{task_text}, remind_datetime: \"#{date} #{time}\",deleted_flag: 0" 
         Task.create!(userid: userid, task_text: task_text, remind_datetime: "#{date} #{time}",deleted_flag: 0)
         reply_message = "タスクを#{date} #{time}に通知する様セットしました。"
 

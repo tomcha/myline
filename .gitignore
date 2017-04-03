@@ -11,3 +11,4 @@ config.yml
 json.md
 *.db
 /vendor
+log/

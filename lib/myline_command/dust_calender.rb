@@ -31,13 +31,14 @@ module MylineCommand
       case judges_day.wday
       when 1
         schedule << '燃えるゴミの日'
+      when 2
+        if ((judges_day.day > 7 && judges_day.day < 15) || (judges_day.day > 21 && judges_day.day < 29))
+          schedule << '不燃、危険、大型、ペットボトルの日'
+        end
       when 3
         if (judges_day.day < 8 || (judges_day.day > 14 && judges_day.day < 22))
           #第1、第3水曜日
           schedule << 'かん・びんの日'
-        elsif (judges_day.day < 29)
-          #第2、第4水曜日
-          schedule << '不燃、危険、大型、ペットボトルの日'
         end
       when 4
         schedule << '燃えるゴミの日'
@@ -55,5 +56,5 @@ __END__
 
 燃えるゴミ　月・木
 かん・びん　1,3水
-ペット、不燃、危険、大型　2,4水
+ペット、不燃、危険、大型　2,4火
 廃品改修　1,3木

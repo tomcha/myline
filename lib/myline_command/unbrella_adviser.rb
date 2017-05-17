@@ -5,7 +5,7 @@ module MylineCommand
   class UnbrellaAdviser
     def initialize()
       #近畿地方 大阪府のデータ
-      @targeturl = 'http://www.tenki.jp/indexes/umbrella/6/30/6200.html'
+      @targeturl = 'https://tenki.jp/indexes/umbrella/6/30/6200/'
     end
 
     def get_umbrella_data

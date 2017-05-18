@@ -30,7 +30,6 @@ module MylineCommand
                        today_umbrella_advice: @today_umbrella_advice,
                        tomorrow_rainypercent: @tomorrow_rainypercent,
                        tomorrow_umbrella_advice: @tomorrow_umbrella_advice}
-      p umbrella_data
       return umbrella_data
     end
   end

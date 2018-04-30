@@ -14,7 +14,7 @@ module MylineCommand
       res.force_encoding("utf-8")
       res =~ /<section class="today-weather"><!-- 今日の天気 -->(.+?)<\/section>/m
       today_html = $1
-      today_html =~ />指数:(.+?)</
+      today_html =~ /alt="指数:(.+?)"/
       @today_rainypercent = $1
       today_html =~ /indexes-telop-1">(.+?)<\/p>/
       @today_umbrella_advice = $1
@@ -22,7 +22,7 @@ module MylineCommand
       #res =~ /<section class="today-weather"><!-- 明日の天気 -->(.+?)<\/section>/m
       res =~ /<section class="tomorrow-weather"><!-- 明日の天気 -->(.+?)<\/section>/m
       tomorrow_html = $1
-      tomorrow_html =~ />指数:(.+?)</
+      tomorrow_html =~ /alt="指数:(.+?)"/
       @tomorrow_rainypercent = $1
       tomorrow_html =~ /indexes-telop-1">(.+?)<\/p>/
       @tomorrow_umbrella_advice = $1

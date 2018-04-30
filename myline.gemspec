@@ -30,7 +30,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "line-bot-api"
   spec.add_dependency "passenger", '~> 5.0', '>= 5.0.28'
   spec.add_dependency "sinatra", "~> 1.4"
-  spec.add_dependency "mysql2", '~> 0.4.5'
+#  spec.add_dependency "mysql2", '~> 0.4.5'
   spec.add_dependency "sqlite3", '~> 1.3', '>= 1.3.12'
   spec.add_dependency "activerecord", '~> 5.0', '>= 5.0.1'
 

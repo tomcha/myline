@@ -15,10 +15,10 @@ describe "DustCalender" do
     #火曜日のテスト
       #何週目 0-1, 1-2, 2-3, 3-4, 4-5
       # 6/7~
-    @fst_tuesday ||= MylineCommand::DustCalender.new(Date.parse('2016-6-7'))
-    @snd_tuesday ||= MylineCommand::DustCalender.new(Date.parse('2016-6-14'))
-    @trd_tuesday ||= MylineCommand::DustCalender.new(Date.parse('2016-6-21'))
-    @for_tuesday ||= MylineCommand::DustCalender.new(Date.parse('2016-6-28'))
+    @fst_tuesday ||= MylineCommand::DustCalender.new(Date.parse('2020-3-3'))
+    @snd_tuesday ||= MylineCommand::DustCalender.new(Date.parse('2020-3-10'))
+    @trd_tuesday ||= MylineCommand::DustCalender.new(Date.parse('2020-3-17'))
+    @for_tuesday ||= MylineCommand::DustCalender.new(Date.parse('2020-3-24'))
     #水曜日のテスト
       #何週目 0-1, 1-2
       # 6/1~
@@ -89,10 +89,40 @@ describe "DustCalender" do
   end
 
   describe "今日が火曜日のとき" do
-    describe "明日が第3火曜日のとき" do
+    describe "今日が第1火曜日のとき" do
+      it "今日は不燃、危険、大型、ペットボトルの日が出力されないこと" do
+        expect((@fst_tuesday.check_schedule)[0]).to eq []
+      end
+    end
+    describe "今日が第2火曜日のとき" do
+      it "今日は不燃、危険、大型、ペットボトルの日が出力されること" do
+        expect((@snd_tuesday.check_schedule)[0]).to eq ['今日は不燃、危険、大型、ペットボトルの日だよ']
+      end
+    end
+    describe "今日が第3火曜日のとき" do
+      it "今日は不燃、危険、大型、ペットボトルの日が出力されないこと" do
+        expect((@trd_tuesday.check_schedule)[0]).to eq []
+      end
+    end
+    describe "今日が第4火曜日のとき" do
+      it "今日は不燃、危険、大型、ペットボトルの日が出力されること" do
+        expect((@for_tuesday.check_schedule)[0]).to eq ['今日は不燃、危険、大型、ペットボトルの日だよ']
+      end
+    end
+
+    describe "明日が第1水曜日のとき" do
       it "明日はかん・びんの日が出力されること" do
-        expect((@trd_monday.check_schedule)[0]).to eq []
-        expect((@trd_monday.check_schedule)[1]).to match_array('明日はかん・びんの日')
+        expect((@fst_tuesday.check_schedule)[1]).to match_array('明日はかん・びんの日だよ')
+      end
+    end
+    describe "明日が第2水曜日のとき" do
+      it "明日はかん・びんの日が出力されないこと" do
+        expect((@snd_tuesday.check_schedule)[1]).to eq []
+      end
+    end
+    describe "明日が第3水曜日のとき" do
+      it "明日はかん・びんの日が出力されること" do
+        expect((@trd_tuesday.check_schedule)[1]).to match_array('明日はかん・びんの日だよ')
       end
     end
   end

@@ -1,6 +1,7 @@
 require 'net/http'
+require 'myline/secret'
 
-module MyLineCommand
+module MylineCommand
   class HibSearch
     def initialize()
       @targeturl = Myline::HOSPITAL_URL

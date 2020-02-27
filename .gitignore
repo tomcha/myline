@@ -12,3 +12,4 @@ json.md
 *.db
 /vendor
 log/
+secret.rb

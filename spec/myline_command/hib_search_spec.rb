@@ -9,4 +9,12 @@ describe "hib search" do
   it 'HibSearchオブジェクトが生成されている' do
     expect(@app).to be_an_instance_of(MylineCommand::HibSearch)
   end
+
+  it '現時点でヒブワクチン供給開始のお知らせが無いこと' do
+    false == @app.hib_stock?()
+  end
+
+  it '現時点でヒブワクチン供給停止のお知らせが有ること'do
+    true == @app.hib_notice?()
+  end
 end

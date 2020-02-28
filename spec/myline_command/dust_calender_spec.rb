@@ -128,53 +128,39 @@ describe "DustCalender" do
   end
 
   describe "今日が水曜日のとき" do
-    describe "今日が第1水曜日、明日が第1木曜日のとき" do
-      it "今日はかん・びんの日が出力され、明日は燃えるゴミ、廃品回収の日が出力されること" do
-        expect((@fst_wednsday.check_schedule)[0]).to match_array('今日はかん・びんの日')
-        expect((@fst_wednsday.check_schedule)[1]).to match_array(['明日は燃えるゴミの日', '明日は廃品回収の日'])
+    describe "今日が第1水曜日のとき" do
+      it "明日は燃えるゴミの日、明日は廃品回収の日が出力されること" do
+        expect((@fst_wednsday.check_schedule)[1]).to match_array(['明日は燃えるゴミの日だよ', '明日は廃品回収の日だよ'])
       end
-    end
-    describe "今日が第2水曜日、明日が第2木曜日のとき" do
-      it "今日は危険大型ゴミの日が出力され、明日は燃えるゴミが出力されること" do
-        expect((@snd_wednsday.check_schedule)[0]).to match_array('今日は不燃、危険、大型、ペットボトルの日')
-        expect((@snd_wednsday.check_schedule)[1]).to match_array('明日は燃えるゴミの日')
-      end
-    end
-    describe "今日が第3水曜日、明日が第3木曜日のとき" do
-      it "今日はかん・びんの日が出力され、明日は燃えるゴミ、廃品回収の日が出力されること" do
-        expect((@trd_wednsday.check_schedule)[0]).to match_array('今日はかん・びんの日')
-        expect((@trd_wednsday.check_schedule)[1]).to match_array(['明日は燃えるゴミの日', '明日は廃品回収の日'])
-      end
-    end
-    describe "今日が第4水曜日、明日が第4木曜日のとき" do
-      it "今日は危険大型ゴミの日が出力され、明日は燃えるゴミが出力されること" do
-        expect((@for_wednsday.check_schedule)[0]).to match_array('今日は不燃、危険、大型、ペットボトルの日')
-        expect((@for_wednsday.check_schedule)[1]).to match_array('明日は燃えるゴミの日')
+      it "今日はかん・びんの日が出力されること" do
+        expect((@fst_wednsday.check_schedule)[0]).to match_array('今日はかん・びんの日だよ')
       end
     end
 
-    describe "今日が第1水曜日、明日が第2木曜日のとき" do
-      it "今日はかん・びんの日が出力され、明日は燃えるゴミが出力されること" do
-        expect((@fst_wednsday.check_schedule)[0]).to match_array('今日はかん・びんの日')
-        expect((@fst_wednsday.check_schedule)[1]).to match_array(['明日は燃えるゴミの日', '明日は廃品回収の日'])
+    describe "今日が第2水曜日のとき" do
+      it "明日は燃えるゴミの日が出力されること" do
+        expect((@snd_wednsday.check_schedule)[1]).to match_array('明日は燃えるゴミの日だよ')
+      end
+      it "今日はかん・びんの日が出力されないこと" do
+        expect((@snd_wednsday.check_schedule)[0]).to eq []
       end
     end
-    describe "今日が第2水曜日、明日が第3木曜日のとき" do
-      it "今日は危険大型ゴミの日が出力され、明日は燃えるゴミ、廃品回収の日が出力されること" do
-        expect((@snd_wednsday.check_schedule)[0]).to match_array('今日は不燃、危険、大型、ペットボトルの日')
-        expect((@snd_wednsday.check_schedule)[1]).to match_array('明日は燃えるゴミの日')
+
+    describe "今日が第3水曜日のとき" do
+      it "明日は燃えるゴミの日、明日は廃品回収の日が出力されること" do
+        expect((@trd_wednsday.check_schedule)[1]).to match_array(['明日は燃えるゴミの日だよ', '明日は廃品回収の日だよ'])
+      end
+      it "今日はかん・びんの日が出力されること" do
+        expect((@trd_wednsday.check_schedule)[0]).to match_array('今日はかん・びんの日だよ')
       end
     end
-    describe "今日が第3水曜日、明日が第4木曜日のとき" do
-      it "今日はかん・びんの日が出力され、明日は燃えるゴミが出力されること" do
-        expect((@trd_wednsday.check_schedule)[0]).to match_array('今日はかん・びんの日')
-        expect((@for_wednsday.check_schedule)[1]).to match_array('明日は燃えるゴミの日')
+
+    describe "今日が第4水曜日のとき" do
+      it "明日は燃えるゴミの日が出力されること" do
+        expect((@for_wednsday.check_schedule)[1]).to match_array('明日は燃えるゴミの日だよ')
       end
-    end
-    describe "今日が第4水曜日、明日が第5木曜日のとき" do
-      it "今日は危険大型ゴミの日が出力され、明日は燃えるゴミ、廃品回収の日が出力されること" do
-        expect((@for_wednsday.check_schedule)[0]).to match_array('今日は不燃、危険、大型、ペットボトルの日')
-        expect((@trd_wednsday.check_schedule)[1]).to match_array(['明日は燃えるゴミの日', '明日は廃品回収の日'])
+      it "今日はかん・びんの日が出力されないこと" do
+        expect((@for_wednsday.check_schedule)[0]).to eq []
       end
     end
   end
@@ -182,39 +168,39 @@ describe "DustCalender" do
   describe "今日が木曜日のとき" do
     describe "今日が第1木曜日のとき" do
       it "今日は燃えるゴミ、廃品回収の日が出力されること" do
-        expect((@fst_thursday.check_schedule)[0]).to match_array(['今日は燃えるゴミの日', '今日は廃品回収の日'])
+        expect((@fst_thursday.check_schedule)[0]).to match_array(['今日は燃えるゴミの日だよ', '今日は廃品回収の日だよ'])
         expect((@fst_thursday.check_schedule)[1]).to eq []
-        expect((@fst_thursday2.check_schedule)[0]).to match_array(['今日は燃えるゴミの日', '今日は廃品回収の日'])
+        expect((@fst_thursday2.check_schedule)[0]).to match_array(['今日は燃えるゴミの日だよ', '今日は廃品回収の日だよ'])
         expect((@fst_thursday2.check_schedule)[1]).to eq []
       end
     end
     describe "今日が第2木曜日のとき" do
       it "今日は燃えるゴミが出力されること" do
-        expect((@snd_thursday.check_schedule)[0]).to match_array('今日は燃えるゴミの日')
+        expect((@snd_thursday.check_schedule)[0]).to match_array('今日は燃えるゴミの日だよ')
         expect((@snd_thursday.check_schedule)[1]).to eq []
-        expect((@snd_thursday2.check_schedule)[0]).to match_array('今日は燃えるゴミの日')
+        expect((@snd_thursday2.check_schedule)[0]).to match_array('今日は燃えるゴミの日だよ')
         expect((@snd_thursday2.check_schedule)[1]).to eq []
       end
     end
     describe "今日が第3木曜日のとき" do
       it "今日は燃えるゴミ、廃品回収の日が出力されること" do
-        expect((@trd_thursday.check_schedule)[0]).to match_array(['今日は燃えるゴミの日', '今日は廃品回収の日'])
+        expect((@trd_thursday.check_schedule)[0]).to match_array(['今日は燃えるゴミの日だよ', '今日は廃品回収の日だよ'])
         expect((@trd_thursday.check_schedule)[1]).to eq []
-        expect((@trd_thursday2.check_schedule)[0]).to match_array(['今日は燃えるゴミの日', '今日は廃品回収の日'])
+        expect((@trd_thursday2.check_schedule)[0]).to match_array(['今日は燃えるゴミの日だよ', '今日は廃品回収の日だよ'])
         expect((@trd_thursday2.check_schedule)[1]).to eq []
       end
     end
     describe "今日が第4木曜日のとき" do
       it "今日は燃えるゴミが出力されること" do
-        expect((@for_thursday.check_schedule)[0]).to match_array('今日は燃えるゴミの日')
+        expect((@for_thursday.check_schedule)[0]).to match_array('今日は燃えるゴミの日だよ')
         expect((@for_thursday.check_schedule)[1]).to eq []
-        expect((@for_thursday2.check_schedule)[0]).to match_array('今日は燃えるゴミの日')
+        expect((@for_thursday2.check_schedule)[0]).to match_array('今日は燃えるゴミの日だよ')
         expect((@for_thursday2.check_schedule)[1]).to eq []
       end
     end
     describe "今日が第5木曜日のとき" do
       it "今日は燃えるゴミが出力されること" do
-        expect((@fif_thursday.check_schedule)[0]).to match_array('今日は燃えるゴミの日')
+        expect((@fif_thursday.check_schedule)[0]).to match_array('今日は燃えるゴミの日だよ')
         expect((@fif_thursday.check_schedule)[1]).to eq []
       end
     end
@@ -233,5 +219,4 @@ describe "DustCalender" do
       expect((@saturday.check_schedule)[1]).to eq []
     end
   end
-
 end

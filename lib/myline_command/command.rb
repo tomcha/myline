@@ -18,6 +18,19 @@ module MylineCommand
       }
     end
     
+    def start_hib_search
+      hs = MylineCommand::HibSearch.new
+      hs.get_hibdata
+
+      if hs.hib_notice?
+        post_text  = "***ヒブワクチン供給開始のニュースが出ています***"
+        uid_keys = @userids.keys
+        for uid_key in uid_keys do
+          @client.push_message(@userids[uid_key], {type: 'text', text: post_text})
+        end
+      end
+    end
+
     def start_unbrella_advice
       ua = MylineCommand::UnbrellaAdviser.new
       message = ua.get_umbrella_data

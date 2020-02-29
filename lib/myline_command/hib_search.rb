@@ -11,18 +11,18 @@ module MylineCommand
       uri = URI.parse(@targeturl)
       @response = Net::HTTP.get(uri)
       @response.force_encoding("utf-8")
-      @response.sub!(/<\/p><p>/, '')
+      @response.chomp!.sub!(/<\/p><p>/, '')
     end
 
     def hib_stock?()
-      f1 = (@response =~ /<h2>.*?ヒブワクチン.*?供給開始.*?<\/h2>/)
-      f2 = (@response =~ /<div class="nwestext">.*?ヒブワクチン.*?供給開始.*?<\/div>/)
+      f1 = (@response =~ /<h2>.*?ヒブワクチン.*?(供給開始|再開).*?<\/h2>/)
+      f2 = (@response =~ /<div class="newstext">.*?ヒブワクチン.*?(供給開始|再開).*?<\/div>/)
       f1 || f2
     end
 
     def hib_notice?()
       f1 = (@response =~ /<h2>.*?ヒブワクチン.*?お知らせ.*?<\/h2>/)
-      f2 = (@response =~ /<div class="nwestext">.*?ヒブワクチン.*?お願い申し上げます.*?<\/div>/)
+      f2 = (@response =~ /<div class="newstext">.*?ヒブワクチン.*?お願い申し上げます.*?<\/div>/)
       f1 || f2
     end
   end

@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'myline_server'
+#require 'myline_server'
 
 describe 'myline' do
   it 'has a version number' do

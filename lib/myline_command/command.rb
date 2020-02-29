@@ -22,7 +22,7 @@ module MylineCommand
       hs = MylineCommand::HibSearch.new
       hs.get_hibdata
 
-      if hs.hib_notice?
+      if hs.hib_stock?
         post_text  = "***ヒブワクチン供給開始のニュースが出ています***"
         uid_keys = @userids.keys
         for uid_key in uid_keys do

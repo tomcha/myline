@@ -10,6 +10,7 @@ module MylineCommand
     def get_hibdata()
       uri = URI.parse(@targeturl)
       @response = Net::HTTP.get(uri)
+      @response.force_encoding("utf-8")
       @response.sub!(/<\/p><p>/, '')
     end
 

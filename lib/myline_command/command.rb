@@ -23,6 +23,7 @@ module MylineCommand
       hs.get_hibdata
 
       if hs.hib_stock?
+#      if hs.hib_notice?
         post_text  = "***ヒブワクチン供給開始のニュースが出ています***"
         uid_keys = @userids.keys
         for uid_key in uid_keys do

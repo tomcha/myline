@@ -4,6 +4,7 @@ require 'myline_command/hib_search'
 describe "hib search" do
   before do
     @app ||= MylineCommand::HibSearch.new
+    @app.get_hibdata
   end
 
   it 'HibSearchオブジェクトが生成されている' do

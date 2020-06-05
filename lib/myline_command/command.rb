@@ -61,7 +61,8 @@ module MylineCommand
     end
 
     def start_assumption_notice
-
+      an = MylineCommand::AssumptionNotice.new
+      an.get_notice_data
     end
 
     def send_reply_message(replytoken, message_text)

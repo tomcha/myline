@@ -17,7 +17,7 @@ module MylineCommand
     end
 
     def newnotice
-      post_message = []
+      post_message = ["アサンプションの情報です"]
       @array.each do |e|
         flg = true
         f = File.open("assumption.yml", "a+")
@@ -27,7 +27,6 @@ module MylineCommand
             flg = false
           end
         end
-        post_message.push("アサンプションの情報です")
         if flg == true
           post_message.push("#{e[0]}:#{e[1]}が新着情報です")
           f.puts("#{e[0]} : #{e[1]}")

@@ -73,6 +73,19 @@ module MylineCommand
       end
     end
 
+    def start_wakaba_notice
+      wn = MylineCommand::WakabaNotice.new
+      wn.get_notice_data
+      messages = wn.newnotice
+      if messages.size > 1
+        post_text = messages.join("\n")
+        uid_keys = @userids.keys
+        for uid_key in uid_keys do
+          @client.push_message(@userids[uid_key], {type: 'text', text: post_text})
+        end
+      end
+    end
+
     def send_reply_message(replytoken, message_text)
       @client.reply_message(replytoken, {type: 'text', text: message_text})
     end

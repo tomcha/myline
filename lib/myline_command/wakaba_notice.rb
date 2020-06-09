@@ -11,7 +11,7 @@ module MylineCommand
       uri = URI.parse(@targeturl)
       response = Net::HTTP.get(uri)
       response.force_encoding("utf-8")
-      regexp = Regexp.new("<ul id=\"infomation\"(.+?)<\/ul>", Regexp::MULTILINE)
+      regexp = Regexp.new("<ul id=\"information\"(.+?)<\/ul>", Regexp::MULTILINE)
       notice = regexp.match(response)
       @array = notice.to_s.scan(/<span>(.+?)<\/span>.*?<a href.+?>(.+?)<\/a><\/li>/m)
     end
@@ -35,7 +35,5 @@ module MylineCommand
       end
       post_message
     end
-  end
-
   end
 end

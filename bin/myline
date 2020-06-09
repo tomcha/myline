@@ -20,5 +20,6 @@ when '-h'
 when '-k'
   command = MylineCommand::Command.new
   command.start_assumption_notice
+  command.start_wakaba_notice
 else
 end

@@ -13,3 +13,5 @@ json.md
 /vendor
 log/
 secret.rb
+wakaba.yml
+asssumption.yml

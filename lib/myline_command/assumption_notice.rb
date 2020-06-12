@@ -20,7 +20,7 @@ module MylineCommand
       post_message = ["アサンプションの情報です"]
       @array.each do |e|
         flg = true
-        f = File.open("assumption.yml", "a+")
+        f = File.open("assumption.yml", "a+:UTF-8")
         f.readlines.each do |line|
           (day, notice) = line.chomp.split(" : ")
           if day == e[0] && notice == e[1]

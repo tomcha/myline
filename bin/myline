@@ -14,9 +14,6 @@ when '-d'
   command.start_dust_calender
 when '-v'
   puts Myline::VERSION
-when '-h'
-  command = MylineCommand::Command.new
-  command.start_hib_search
 when '-k'
   command = MylineCommand::Command.new
   command.start_assumption_notice

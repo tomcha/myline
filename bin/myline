@@ -18,6 +18,5 @@ when '-k'
   command = MylineCommand::Command.new
   command.start_assumption_notice
   command.start_wakaba_notice
-  command.start_makiochi_notice
 else
 end
